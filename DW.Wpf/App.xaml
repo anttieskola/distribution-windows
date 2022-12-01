@@ -1,0 +1,110 @@
+<Application x:Class="DW.Wpf.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="View/Root.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Application.Resources>
+        <!-- Viewmodel locator -->
+        <vm:VMLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:DW.Wpf.ViewModel" />
+
+        <!-- Common font setting -->
+        <Style TargetType="Control" x:Key="MyCommon">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Margin" Value="5 5 5 0"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        
+        <!-- Word wrap on to all textblocks, seems to not show in designer! -->
+        <Style TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+        
+        <!-- Buttons -->
+        <Style TargetType="Button" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        
+        <Style TargetType="CheckBox" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+        <!-- Textbox -->
+        <Style x:Key="TextBoxMed" TargetType="TextBox" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        
+        <Style x:Key="PasswordBoxMed" TargetType="PasswordBox" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Labels -->
+        <Style TargetType="Label" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        
+        <!-- Labels, Header -->
+        <Style x:Key="LabelHeader" TargetType="Label" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="LabelHeaderMed" TargetType="Label" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="LabeHeaderBig" TargetType="Label" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Labels, help messages -->
+        <Style x:Key="LabelHelp" TargetType="Label" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Green"/>
+        </Style>
+        <Style x:Key="LabelHelpBig" TargetType="Label" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="Green"/>
+        </Style>
+        
+        <!-- Labels, Toolbar -->
+        <Style x:Key="LabelToolbar" TargetType="Label" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Textbox -->
+        <Style TargetType="TextBox" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="PasswordBox" BasedOn="{StaticResource MyCommon}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        
+        <!-- Scrollviewer's, all lists are inside one -->
+        <Style TargetType="ScrollViewer">
+            <!-- always show vertical even if not needed -->
+            <Setter Property="VerticalScrollBarVisibility" Value="Visible"/>
+            <!-- horizontal disabled due to its awkward to use and text can wrap -->
+            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+        </Style>
+        
+        <!-- Lists for selection -->
+        <Style TargetType="ListBox" BasedOn="{StaticResource MyCommon}">
+            <!-- adding more margin due to scrollbar -->
+            <Setter Property="Margin" Value="5 0 20 0"/>
+        </Style>
+        
+        <!-- Datepicker -->
+        <Style TargetType="DatePicker" BasedOn="{StaticResource MyCommon}">
+            <!-- adding more margin due to button (aligns correctly with others)-->
+            <Setter Property="Margin" Value="5 5 20 0"/>
+        </Style>
+        
+    </Application.Resources>
+</Application>

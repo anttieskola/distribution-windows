@@ -1,0 +1,14 @@
+﻿Antti 2014
+
+Only publish release builds! Code uses debug to define for example different server address into use.
+
+When you look into publish settings in project properties you see the publish version information.
+It will be automatically incremented revision everytime you create a publish package.
+
+Manually:
+- Increment build number for bug fixes.
+- Increment minor number for features.
+- Increment major number for big changes.
+
+Note, version information is not available when you debug application. Only when
+application is installed from the clickonce installer.

@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="DW.Wpf.View.OrderSetup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=OrderSetup}">
+
+        <!-- Top row for help message and start button. Rest is for content.-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- colums each contain own grids-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- help message -->
+        <Label Style="{StaticResource LabelHelp}" Grid.ColumnSpan="2">
+            <TextBlock Text="{Binding HelpMessage}"/>
+        </Label>
+
+        <!-- start / reset buttons -->
+        <StackPanel Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+            <Button Command="{Binding ResetCommand}">Reset</Button>
+            <Button Command="{Binding CreateCommand}">Next</Button>
+        </StackPanel>
+
+        <!-- colum 0, distributor -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Style="{StaticResource LabelHeader}">Customer</Label>
+            <ListBox Grid.Row="1" ItemsSource="{Binding Distributors}"
+                     SelectedItem="{Binding SelectedDistributor}"
+                     SelectionMode="Single">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Label Grid.Column="1">
+                                <TextBlock Text="{Binding Name}"/>
+                            </Label>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <!-- colum 1, product -->
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Label Style="{StaticResource LabelHeader}">Product</Label>
+            <ListBox Grid.Row="1"
+                    ItemsSource="{Binding Products}"
+                    SelectedItem="{Binding SelectedProduct}"
+                    SelectionMode="Single">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label>
+                            <TextBlock Text="{Binding Name}"/>
+                        </Label>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <!-- datepicker -->
+            <Label Style="{StaticResource LabelHeader}" Grid.Row="2">Manufacturing date (optional)</Label>
+            <DatePicker Grid.Row="3" SelectedDate="{Binding ManufacturingDate}"/>
+        </Grid>
+
+        <!-- colum 2, label printer -->
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Style="{StaticResource LabelHeader}" Visibility="{Binding LabelPrintingVisibility}">Label printer</Label>
+            <ListBox Grid.Row="1"
+                 Visibility="{Binding LabelPrintingVisibility}"
+                 ItemsSource="{Binding LabelPrinters}"
+                 SelectedItem="{Binding SelectedLabelPrinter}"
+                 SelectionMode="Single">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label>
+                            <TextBlock Text="{Binding}"/>
+                        </Label>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- label template -->
+            <Label Style="{StaticResource LabelHeader}" Visibility="{Binding LabelPrintingVisibility}"
+               Grid.Row="2">Label template</Label>
+            <ListBox Grid.Row="3"
+                 Visibility="{Binding LabelPrintingVisibility}"
+                 ItemsSource="{Binding LabelTemplates}"
+                 SelectedItem="{Binding SelectedLabelTemplate}"
+                 SelectionMode="Single">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label>
+                            <TextBlock Text="{Binding Name}"/>
+                        </Label>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</UserControl>
